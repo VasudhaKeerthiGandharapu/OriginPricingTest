@@ -1,0 +1,14 @@
+{
+    "originPricingPage":{
+        "address": "63 cuthbert avenue, truganina, vic 3029",
+        "addressText": "63 Cuthbert Avenue, TRUGANINA VIC 3029",
+        "expectedTitle": "Search detailed energy plan documents for your area",
+        "plan1": "Electricity",
+        "plan2": "Natural gas",
+        "newPageName": "energymadeeasy",
+        "newPageURL": "Origin Energy"
+    },
+    "userName": "user",
+    "password": "Pass123$",
+    "confirmPassword": "Pass123$"
+}
