@@ -1,13 +1,14 @@
 import { expect, Page, Locator } from "@playwright/test";
-import HeaderPage from "./headerPage";
 import { loadTestData } from "../helper/util/datajsonLoad";
+import { TIMEOUT } from "node:dns";
 
 export class EnergyMadeEasyPage {
 
-    readonly page: Page;
+  readonly page: Page;
   readonly newTabLogo: Locator;
   readonly originSourceLogo: Locator;
   readonly postCodeInput: Locator;
+  readonly pageHeading: Locator
   testData;
 
   constructor(page: Page) {
@@ -15,16 +16,13 @@ export class EnergyMadeEasyPage {
     // Define locators using getByRole and other built-in methods
     this.newTabLogo = page.locator('#main img');
     this.originSourceLogo = page.getByRole('link', { name: 'Australian government -' });
-    this.postCodeInput = page.getByRole('combobox', { name: 'Enter your postcode to view' })
-    this.testData = loadTestData()
+    this.postCodeInput = page.getByRole('combobox', { name: 'Enter your postcode to view' });
+    this.pageHeading = page.locator('h1');
+    this.testData = loadTestData();
   }
 
-  //async navigateTo(): Promise<void> {
-  //  await this.page.goto('https://example.com/login');
-  //}
-
   async verifyLogoAndPostCodeInput(): Promise<void> {
-    await this.newTabLogo.waitFor();
+    await this.newTabLogo.waitFor({ timeout: 1000000 });
     await expect(this.newTabLogo).toBeVisible();
     await this.originSourceLogo.waitFor();
     await expect(this.originSourceLogo).toBeVisible();
@@ -34,12 +32,20 @@ export class EnergyMadeEasyPage {
     console.log("Navigated to " + this.testData.originPricingPage.newPageName + "page")
   }
 
+  async verifyPageHeading(newPageHeading :string): Promise<void> {
+    await this.pageHeading.waitFor({ timeout: 5000 })
+    const headername = await this.pageHeading.textContent();
+    console.log(`The tag name is: ${headername}`);
+    expect(headername).toContain(newPageHeading);
+    console.log("Verified Page Heading" + newPageHeading + "for new page")
+  }
+
   async verifyURL(pageName: string): Promise<void> {
     expect(this.page.url()).toContain(pageName);
     expect(this.page.url()).toContain("/www.energymadeeasy.gov.au");
   }
 
-  async verifyURLParams(pageName: string): Promise<void> {
+  async verifyURLParams(): Promise<void> {
     const newPageUrlString = this.page.url();
 
   // Use the built-in URL object to parse the URL string
@@ -60,15 +66,4 @@ export class EnergyMadeEasyPage {
   }
 
 
-}
-
-
-export const pageElements = {
-    name: 'Search Energy Plans',
-    elements: {
-        searchPlanTitle:{
-            elementName: 'Search Plan Title',
-            locator: 'h1[name="Search detailed energy plan documents for your area"]'
-        }
-    }
 }

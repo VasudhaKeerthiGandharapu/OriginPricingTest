@@ -1,14 +1,12 @@
 import { Page } from "@playwright/test";
 const fs = require('fs')
-//const logger = getLogger();
-//logger.level = 'error'
 
 import * as originPricingPage from '../../pages/originPricingPage'
 import * as energyMadeEasyPage from '../../pages/energyMadeEasyPage'
 
 const pages = {
-    'Origin Pricing Page' : originPricingPage.pageElements,
-    'Energy MadeEasy Page' : energyMadeEasyPage.pageElements
+    'Origin Pricing Page' : originPricingPage,
+    'Energy MadeEasy Page' : energyMadeEasyPage
 }
 
 class Helper{
