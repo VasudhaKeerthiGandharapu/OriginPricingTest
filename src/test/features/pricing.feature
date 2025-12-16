@@ -1,9 +1,11 @@
+@regression @pricingFlow
 Feature:Origin Pricing tests
 
   Background:
     Given User navigates to application page
     And User should be on Origin page
 
+  @smoke
   Scenario: Origin Pricing workflow
     And User enter the address
     And User select the address from dropdown
@@ -29,12 +31,14 @@ Feature:Origin Pricing tests
     And User should see all "Natural gas" plans
     And User click on all the plans link
 
+@accessibility
 Scenario: Origin Pricing workflow verifying accessibility issues
     And User enter the address
     And User select the address from dropdown
     And User should be on Electricity and Natural Gas plans page
     And the page should be accessible
 
+@netWorkmocking
 Scenario: Origin Pricing workflow verifying accessibility issues
     And User enter the address
     And User select the address from dropdown
