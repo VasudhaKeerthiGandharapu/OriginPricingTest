@@ -16,7 +16,7 @@ interface OriginPricingPage {
 }
 
 export const loadTestData = (): TestData => {
-  const environment = process.env.ENV || 'qa'; // Default to 'qa' if not specified
+  const environment = process.env.ENV || 'prod'; // Default to 'qa' if not specified
   const filePath = path.resolve(__dirname, `../util/test-data/originPricingData_${environment}.json`);
 
   if (!fs.existsSync(filePath)) {

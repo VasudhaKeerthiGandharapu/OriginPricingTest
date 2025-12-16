@@ -1,7 +1,7 @@
 # Use a Node.js base image with Playwright
 FROM mcr.microsoft.com/playwright:v1.37.0-focal
 # Set working directory inside the container
-WORKDIR /app
+WORKDIR /originpricingtest/src
 # Copy package.json and package-lock.json for dependency installation
 COPY package*.json ./
 # Install the project dependencies
