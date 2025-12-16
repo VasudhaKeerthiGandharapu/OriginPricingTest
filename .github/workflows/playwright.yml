@@ -23,7 +23,7 @@ jobs:
         HEADED: false  # Explicitly force headless mode in CI
         ENV: ci
     - name: Run Playwright tests in Virtual Display
-      run: xvfb-run npm executetest
+      run: xvfb-run npm test
       env:
         HEADED: true # Now this will work because xvfb-run provides a display
         ENV: ci
