@@ -36,7 +36,7 @@ Scenario: Origin Pricing workflow verifying accessibility issues
     And User enter the address
     And User select the address from dropdown
     And User should be on Electricity and Natural Gas plans page
-    And the page should be accessible
+    Then the page has accessible issue
 
 @netWorkmocking
 Scenario: Origin Pricing workflow verifying accessibility issues

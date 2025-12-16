@@ -69,7 +69,7 @@ Then('User click on all the plans link', async function () {
     await originPricingPage.loopThroughAndClickLinks();
 });
 
-Then('the page should be accessible', async function () {
+Then('the page has accessible issue', async function () {
   const results = await originPricingPage.checkAccessibility();
   
   // Fail the test if there are any violations
