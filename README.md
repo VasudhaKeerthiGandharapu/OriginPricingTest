@@ -40,16 +40,17 @@ TypeScript is a powerful superset of JavaScript that adds optional static typing
 2. Extract and open in the VS-Code
 3. `npm i` to install the dependencies
 4. `npx playwright install` to install the browsers
-5. `npm run test` to execute the tests
-6. To run a particular test change  
+5. `npm run test:prod` to execute the tests
+6. ` $env:ENV="qa"; npm test` to run on specific environment
+7. To run a particular test change  
 ```
   paths: [
             "src/test/features/featurename.feature"
          ] 
 ```
-7. Use tags to run a specific or collection of specs
+8. Use tags to run a specific or collection of specs
 ```
-npm run test --TAGS="@test or @add"
+npm run test:smoke 
 ```
 
 ### Folder structure
@@ -66,4 +67,41 @@ npm run test --TAGS="@test or @add"
 10. `src\helper\auth` -> Storage state (Auth file)
 11. `src\helper\util` -> Read test data from json & logger
 
+## Tool Rationale Details to Include
+Project Context/Motivation: "This framework is designed for robust, scalable end-to-end (E2E) testing of our web application using Behavior-Driven Development (BDD) principles".
+
+1. Playwright Rationale:
+Reasoning: Open Source, Scalability and long-term maintenance goals . Also cross browser supported. the below benefits are the reason why its better than the older frameworks.
+Key Benefits: Mention its ability to support multiple browsers (Chromium, Firefox, WebKit) with a single API, fast and reliable execution, auto-wait mechanisms (reducing flaky tests), powerful tooling (like Codegen, Trace Viewer), and support for modern web features.
+
+
+2. Cucumber Rationale:
+Reasoning: Scalability and long-term maintenance goals . Also cross browser supported
+Key Benefits: Highlight how it enables collaboration between technical and non-technical team members (using plain English Gherkin syntax), improves test readability, and ensures that the automation aligns directly with business requirements.
+
+
+
+3. Page Object Model (POM) Rationale:
+Reasoning: Scalability and long-term maintenance goals. primarily driven by the need for enhanced code maintainability, reusability, and readability
+Key Benefits: Emphasize benefits such as code reusability, reduced code duplication, enhanced maintainability (if UI changes, only the page object needs updating), and keeping test scenarios cleaner and easier to understand.
+4. Supporting Tools (TypeScript, Reporting Library, CI/CD Integration):
+
+TypeScript: Chosen for type safety, improved code quality, and better maintainability of the framework.
+Reporting (e.g., Allure or built-in HTML reporter): Selected to provide detailed test reports including screenshots and videos for failed tests, which is crucial for debugging and maintenance.
+
+
+CI/CD Integration: Mention how the framework is designed to integrate easily into the CI/CD pipeline (e.g., Jenkins, GitLab CI) for automated execution on every build.
+
+
+## Limitations:
+
+Loss of Native Playwright Features: By using Cucumber as the test runner instead of Playwright's native npx playwright test, you lose out on built-in capabilities like the UI Mode, custom fixtures, and advanced sharding.
+
+Weak IDE Integration: While Playwright has first-class VS Code support, the Cucumber runner lacks native support for "Run single test" or "Debug single step" directly from the editor without manual configuration.
+
+## Hardening strategies:
+
+Independence from CucumberJS: Modern wrappers are moving away from Cucumber’s internal functions to prevent breakage during npm updates, shifting toward a model where Playwright acts as the primary runner while still parsing Gherkin.
+
+Better BDD Reporting: New reporters are being developed to explicitly show "Background" steps and "Scenario Outlines" in the Playwright HTML report, which previously hid these details in beforeHooks.
 

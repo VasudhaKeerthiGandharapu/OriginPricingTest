@@ -21,17 +21,17 @@ Given('User should be on Origin page', async function () {
   
 });
 
-Given('User enter the address', async function () {
+When('User enter the address', async function () {
     originPricingPage = new OriginPricingPage(fixture.page)
     await originPricingPage.selectAddress(this.testData.originPricingPage.address)
   
 });
 
-Given('User select the address from dropdown', async function () {  
+When('User select the address from dropdown', async function () {  
     await originPricingPage.selectAddressFromDropDown(this.testData.originPricingPage.addressText)
 });
 
-Given('User should be on Electricity and Natural Gas plans page', async function () {
+When('User should be on Electricity and Natural Gas plans page', async function () {
     await originPricingPage.verifyEnergyPlansPage();
   
 });
@@ -50,7 +50,7 @@ Then('User should see all {string} plans', async function (string) {
     await expect(fixture.page.getByRole('table')).toContainText(string);
 });     
 
- When('User click on the {string} plan link', async function (string) {
+ Then('User click on the {string} plan link', async function (string) {
     energyMadeEasyPage = await originPricingPage.clickAndVerifyNetworkActivity(string);
 });
 
@@ -76,11 +76,11 @@ Then('the page has accessible issue', async function () {
   expect(results.violations).not.toEqual([]); 
 });
 
-Given('the server returns a error for the originBasicLink request', async function () {
+When('the server returns a error for the originBasicLink request', async function () {
     await originPricingPage.mockApiErrorforURLNavigation(this.testData.originPricingPage.originBasicLink);
 });
 
-Given('User click on the {string} plan link without network verification', async function (string) {
+When('User click on the {string} plan link without network verification', async function (string) {
     await originPricingPage.clickLink(string);
 });
 
