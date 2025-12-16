@@ -18,6 +18,7 @@ module.exports = {
             "ts-node/register"
         ],
         format: [
+            process.env.CI ? 'progress' : 'progress-bar', 
             "progress-bar",
             "html:test-results/cucumber-report.html",
             "json:test-results/cucumber-report.json",
