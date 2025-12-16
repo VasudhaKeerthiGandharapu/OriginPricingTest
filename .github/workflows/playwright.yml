@@ -1,0 +1,35 @@
+name: Playwright Tests
+on:
+  push:
+    branches: [ main, feature/OriginPricingSenario ]
+  pull_request:
+    branches: [ main, development ]
+jobs:
+  test:
+    timeout-minutes: 60
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 16
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright Browsers
+      run: npx playwright install
+    - name: Run Cucumber tests
+      run: npm run test
+      env:
+        HEADED: false  # Explicitly force headless mode in CI
+        ENV: ci
+    - name: Run Playwright tests in Virtual Display
+      run: xvfb-run npm test
+      env:
+        HEADED: true # Now this will work because xvfb-run provides a display
+        ENV: ci
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: Report
+        path: test-results
+        retention-days: 2
