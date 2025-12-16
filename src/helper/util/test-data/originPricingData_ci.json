@@ -1,0 +1,12 @@
+{
+    "originPricingPage":{
+        "address": "12 Smith Street, Surry Hills, NSW 2010 (Sydney)",
+        "addressText": "12 Smith Street, Surry Hills NSW 2010",
+        "expectedTitle": "Search detailed energy plan documents for your area",
+        "plan1": "Electricity",
+        "plan2": "Natural gas",
+        "newPageName": "energymadeeasy",
+        "newPageURL": "Origin Energy",
+        "originBasicLink": "**/**"
+    }
+}
