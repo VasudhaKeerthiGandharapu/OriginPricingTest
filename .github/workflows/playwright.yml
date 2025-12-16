@@ -18,14 +18,15 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install
     - name: Run Cucumber tests
-      run: npm run "test:ci"
+      run: npm run test
       env:
         HEADED: false  # Explicitly force headless mode in CI
-        ENV: staging
+        ENV: ci
     - name: Run Playwright tests in Virtual Display
-      run: xvfb-run npm "test:prod"
+      run: xvfb-run npm executetest
       env:
         HEADED: true # Now this will work because xvfb-run provides a display
+        ENV: ci
     - uses: actions/upload-artifact@v4
       if: always()
       with:
