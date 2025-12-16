@@ -6,9 +6,7 @@ import { getEnv } from "../helper/env/env";
 import { createLogger } from "winston";
 import { options } from "../helper/util/logger";
 import { loadTestData } from '../helper/util/datajsonLoad';
-import { Interface } from "node:readline";
 const fs = require("fs-extra");
-//setDefaultTimeout(60 * 1000);
 
 let browser: Browser;
 let context: BrowserContext;
@@ -45,7 +43,6 @@ Before(async function ({ pickle }) {
 Before(async function ({ pickle }) {
     const scenarioName = pickle.name + pickle.id
     context = await browser.newContext({
-        //storageState: getStorageState(pickle.name),
         recordVideo: {
             dir: "test-results/videos",
         },

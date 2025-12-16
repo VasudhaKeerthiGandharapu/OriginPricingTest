@@ -59,6 +59,14 @@ export class EnergyMadeEasyPage {
   expect(sourceValue).toBe(this.testData.originPricingPage.newPageURL)
   }
 
+  async VerifyServerError(errorMessage : string): Promise<void> {
+    // Perform assertions on the newTab object, not the original page
+    await this.page.waitForLoadState('load');
+    const errorText = await this.page.locator('#error-message');
+    await expect(errorText).toContainText('500');
+    await expect(errorText).toContainText(errorMessage);
+  }
+
   
 
   async closeNewTab(): Promise<void> {

@@ -76,5 +76,16 @@ Then('the page should be accessible', async function () {
   expect(results.violations).not.toEqual([]); 
 });
 
+Given('the server returns a error for the originBasicLink request', async function () {
+    await originPricingPage.mockApiErrorforURLNavigation(this.testData.originPricingPage.originBasicLink);
+});
 
+Given('User click on the {string} plan link without network verification', async function (string) {
+    await originPricingPage.clickLink(string);
+});
+
+
+Then('user should not be able to see {string} any plan Link', async function (string) {
+    await expect(fixture.page.getByRole('link', { name: 'Origin Basic', exact: true }).first()).not.toBeVisible();
+});
 

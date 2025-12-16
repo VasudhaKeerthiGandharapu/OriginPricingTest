@@ -56,15 +56,15 @@ export class OriginPricingPage {
   }
 
   public async clickLinkToNewTab(string): Promise<EnergyMadeEasyPage> {
-    if (string=='First'){
+    if (string=='originBasic'){
         this.link=this.originBasicLink
     }
-    if (string=='Second'){
+    if (string=='originEveryDay'){
         this.link=this.originEveryDayLink
     }
     const [newPage] = await Promise.all([
       this.page.waitForEvent('popup'),
-      this.link.click(),
+      await this.link.click(),
       
     ]);
 
@@ -75,11 +75,22 @@ export class OriginPricingPage {
     return new EnergyMadeEasyPage(newPage);
   }
 
-public async clickAndVerifyNetworkActivity(string): Promise<EnergyMadeEasyPage> {
-    if (string=='First'){
+  public async clickLink(string): Promise<void> {
+    if (string=='originBasic'){
         this.link=this.originBasicLink
     }
-    if (string=='Second'){
+    if (string=='originEveryDay'){
+        this.link=this.originEveryDayLink
+    }
+    await this.link.click()
+      
+  }
+
+public async clickAndVerifyNetworkActivity(string): Promise<EnergyMadeEasyPage> {
+    if (string=='originBasic'){
+        this.link=this.originBasicLink
+    }
+    if (string=='originEveryDay'){
         this.link=this.originEveryDayLink
     }
     console.log("PageURL in network verification: ",this.page.url())
@@ -160,6 +171,16 @@ public async loopThroughAndClickLinks() {
       .analyze();
     console.log("accessibility results: " +results.violations)
     return results;
+  }
+
+  async mockApiErrorforURLNavigation(apiurl : string) {
+    await this.page.route(apiurl, route => {
+      route.fulfill({
+        status: 500,
+        body: JSON.stringify({ error: 'Internal Server Error' }),
+        contentType: 'application/json',
+      });
+    });
   }
 
 }

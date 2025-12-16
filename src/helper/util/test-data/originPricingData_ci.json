@@ -6,7 +6,8 @@
         "plan1": "Electricity",
         "plan2": "Natural gas",
         "newPageName": "energymadeeasy",
-        "newPageURL": "Origin Energy"
+        "newPageURL": "Origin Energy",
+        "originBasicLink": ""
     },
     "userName": "user",
     "password": "Pass123$",
