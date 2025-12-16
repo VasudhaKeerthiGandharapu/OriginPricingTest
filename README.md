@@ -61,7 +61,7 @@ npm run test --TAGS="@test or @add"
 5. `src\helper\env` -> Multiple environments are handled
 6. `src\helper\types` -> To get environment code suggestions
 7. `src\helper\report` -> To generate the report
-8. `config/cucumber.js` -> One file to do all the magic
+8. `cucumber.js` -> One file to do all the magic
 9. `package.json` -> Contains all the dependencies
 10. `src\helper\auth` -> Storage state (Auth file)
 11. `src\helper\util` -> Read test data from json & logger

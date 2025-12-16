@@ -8,7 +8,6 @@ module.exports = {
         paths: [
             "src/test/features/"
         ],
-        publishQuiet: true,
         dryRun: false,
         require: [
             "src/test/steps/*.ts",
@@ -31,7 +30,6 @@ module.exports = {
             snippetInterface: "async-await"
         },
         timeout: 60000, // Timeout in milliseconds (60 seconds) 
-        publishQuiet: true,
         dryRun: false,
         require: [
             "src/test/steps/*.ts",
