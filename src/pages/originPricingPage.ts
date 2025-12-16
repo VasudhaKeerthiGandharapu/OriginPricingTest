@@ -1,5 +1,6 @@
 import { expect, Page, Locator } from "@playwright/test";
 import { EnergyMadeEasyPage } from "./energyMadeEasyPage";
+const { AxeBuilder } = require('@axe-core/playwright');
 
 
 export class OriginPricingPage {
@@ -150,6 +151,15 @@ public async loopThroughAndClickLinks() {
       //await this.page.goBack();
       await this.page.bringToFront(); // Example: navigate back to the original page to continue the loop
     }
+  }
+
+  async checkAccessibility() {
+    // AxeBuilder scans the current state of the page
+    const results = await new AxeBuilder({ page: this.page })
+      .withTags([ "cat.semantics", "best-practice", "RGAAv4", "RGAA-9.2.1"]) // Standard WCAG tags
+      .analyze();
+    console.log("accessibility results: " +results.violations)
+    return results;
   }
 
 }

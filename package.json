@@ -31,5 +31,9 @@
     "multiple-cucumber-html-reporter": "^3.3.0",
     "ts-node": "^10.9.2",
     "winston": "^3.8.2"
+  },
+  "dependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "axe-html-reporter": "^2.2.11"
   }
 }
