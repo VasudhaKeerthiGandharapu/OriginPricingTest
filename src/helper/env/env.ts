@@ -16,7 +16,7 @@ export const getBrowser = () => {
     if (process.env.BROWSER) {
         dotenv.config({
             override: true,
-            path: `src/helper/env/.env.${process.env.BROWSER}`
+            path: `src/helper/env/.env.${process.env.ENV}`
         })
     } else {
         console.error("NO BROWSER PASSED!")
