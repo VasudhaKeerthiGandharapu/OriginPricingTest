@@ -6,7 +6,8 @@ declare global {
             BROWSER: "chrome" | "firefox" | "webkit",
             ENV: "staging" | "prod" | "qa" | "ci",
             BASEURL: string,
-            HEAD: "true" | "false"
+            HEADLESS: "true" | "false",
+            TAGS: "@regression" | "@accessibility"| "@smoke"| "@netWorkmocking"
         }
     }
 }
