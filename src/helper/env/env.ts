@@ -16,7 +16,7 @@ export const getBrowser = () => {
     if (process.env.BROWSER) {
         dotenv.config({
             override: true,
-            path: `src/helper/env/.env.${process.env.ENV}`
+            path: `src/helper/env/.env.${process.env.BROWSER}`
         })
     } else {
         console.error("NO BROWSER PASSED!")
@@ -37,7 +37,7 @@ export const getTags = () => {
 }
 
 export const getHead = () => {
-    if (!process.env.HEADLESS) {
+    if (process.env.HEADLESS) {
         dotenv.config({
             override: true,
             path: `src/helper/env/.env.${process.env.ENV}`
