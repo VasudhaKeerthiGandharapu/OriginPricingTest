@@ -40,15 +40,23 @@ TypeScript is a powerful superset of JavaScript that adds optional static typing
 2. Extract and open in the VS-Code
 3. `npm i` to install the dependencies
 4. `npx playwright install` to install the browsers
-5. `npm run test:prod` to execute the tests
-6. ` $env:ENV="qa"; npm test` to run on specific environment
-7. To run a particular test change  
+    
+5. `npm install @axe-core/playwright` to install the axe core
+
+6. `npm install --save-dev cross-env` to install cross env
+
+7. `npm install axe-html-reporter` to install axe report
+
+8. `npm run test:prod` to execute the tests
+9. ` $env:ENV="qa"; npm run Atest` to run on specific environment
+10. ` $env:BROWSER="chrome"; npm run Atest` to run on specific browser
+11. To run a particular test change  
 ```
   paths: [
             "src/test/features/featurename.feature"
          ] 
 ```
-8. Use tags to run a specific or collection of specs
+12. Use tags to run a specific or collection of specs
 ```
 npm run test:smoke 
 ```
