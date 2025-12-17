@@ -2,7 +2,7 @@ import { BeforeAll, AfterAll, Before, After, Status, setDefaultTimeout } from "@
 import { Browser, BrowserContext } from "@playwright/test";
 import { fixture } from "./pageFixture";
 import { invokeBrowser } from "../helper/browsers/browserManager";
-import { getBrowser, getEnv, getTags } from "../helper/env/env";
+import { getBrowser, getEnv, getHead, getTags } from "../helper/env/env";
 import { createLogger } from "winston";
 import { options } from "../helper/util/logger";
 import { loadTestData } from '../helper/util/datajsonLoad';
@@ -16,6 +16,7 @@ BeforeAll(async function () {
     getEnv();
     getBrowser();
     getTags();
+    getHead();
     browser = await invokeBrowser();
 });
 
